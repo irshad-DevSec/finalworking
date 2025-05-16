@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <meta http-equiv="Content-Security-Policy" 
+         content="default-src 'self'; 
+         img-src 'self' data:; 
+         script-src 'self' https://cdnjs.cloudflare.com; 
+         style-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline'; 
+         font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com;">
+      <meta http-equiv="X-Content-Type-Options" content="nosniff">
+      <meta http-equiv="X-Frame-Options" content="DENY">
+      <meta name="referrer" content="no-referrer">
+      <meta name="permissions-policy" content="geolocation=(), camera=(), microphone=()">
+      <meta name="description" content="iV MOVERS offers affordable and professional house & office moving services in KL and Selangor Malaysia.">
+      <title>iV MOVERS</title>
+      <style>
+         * {
+         box-sizing: border-box;
+         margin: 0;
+         padding: 0;
+         }
+         body {
+         font-family: 'Roboto', sans-serif;
+         background-color: #ffffff;
+         color: #333;
+         }
+         header {
+         background-color: #1a2a3a;
+         color: white;
+         position: relative;
+         z-index: 1000;
+         }
+         .header-container {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         padding: 1rem;
+         flex-wrap: wrap;
+         position: relative;
+         }
+         .logo {
+         width: 120px;
+         height: auto;
+         }
+         .title-section {
+         flex: 1;
+         text-align: center;
+         }
+         .title-section h1 {
+         font-size: 3rem;
+         font-family: 'Lora', serif;
+         margin-bottom: 0.3rem;
+         }
+         .title-section p {
+         font-size: 1rem;
+         }
+         .menu-icon {
+         width: 30px;
+         height: 22px;
+         display: none;
+         flex-direction: column;
+         justify-content: space-between;
+         cursor: pointer;
+         position: absolute;
+         top: 20px;
+         right: 20px;
+         z-index: 1101;
+         }
+         .menu-icon span {
+         display: block;
+         height: 4px;
+         background: white;
+         border-radius: 2px;
+         transition: 0.4s ease;
+         }
+         .menu-icon.open span:nth-child(1) {
+         transform: rotate(45deg) translate(5px, 5px);
+         }
+         .menu-icon.open span:nth-child(2) {
+         opacity: 0;
+         }
+         .menu-icon.open span:nth-child(3) {
+         transform: rotate(-45deg) translate(5px, -5px);
+         }
+         .nav-links {
+         list-style: none;
+         display: flex;
+         justify-content: center;
+         gap: 1rem;
+         padding: 1rem 0;
+         width: 100%;
+         background-color: #3b4b58;
+         }
+         .nav-links li a {
+         color: white;
+         text-decoration: none;
+         font-weight: bold;
+         padding: 0.5rem 1rem;
+         border-radius: 4px;
+         }
+         .nav-links li a:hover {
+         background-color: #ffdd00;
+         color: #1a2a3a;
+         }
+         /* Mobile Styles */
+         @media (max-width: 768px) {
+         .menu-icon {
+         display: flex;
+         }
+         .nav-links {
+         flex-direction: column;
+         align-items: flex-start;
+         position: fixed;
+         top: 0;
+         right: 0;
+         height: 100vh;
+         width: 250px;
+         background-color: #1a2a3a;
+         padding: 4rem 1.5rem 1rem;
+         transform: translateX(100%);
+         transition: transform 0.3s ease;
+         z-index: 1100;
+         }
+         .nav-links.active {
+         transform: translateX(0);
+         }
+         .header-container {
+         flex-direction: column;
+         align-items: center;
+         text-align: center;
+         }
+         .logo {
+         width: 80px;
+         }
+         .title-section h1 {
+         font-size: 1.5rem;
+         }
+         .title-section p {
+         font-size: 0.9rem;
+         }
+         }
+         .hero {
+         background: linear-gradient(135deg, #3e4e5e, #5a6b7c);
+         color: white;
+         height: calc(100vh - 60px);
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         position: relative;
+         text-align: center;
+         }
+         .hero-content {
+         background: rgba(0, 0, 0, 0.6);
+         padding: 2rem;
+         border-radius: 10px;
+         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+         }
+         .hero h1 {
+         font-size: 3rem;
+         margin: 0;
+         }
+         .hero p {
+         font-size: 1.5rem;
+         margin: 1rem 0 0;
+         }
+         section {
+         padding: 4rem 2rem;
+         text-align: center;
+         }
+         .services, .packages {
+         display: flex;
+         flex-wrap: wrap;
+         justify-content: center;
+         gap: 2rem;
+         }
+         .service, .package {
+         background: linear-gradient(135deg, #e9f4ff, #b0d8f8);
+         border-radius: 8px;
+         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+         overflow: hidden;
+         max-width: 300px;
+         transition: transform 0.3s ease;
+         }
+         .service:hover, .package:hover {
+         transform: translateY(-10px);
+         }
+         .service h3, .package h3 {
+         margin: 0;
+         padding: 1rem;
+         background: #005bb5;
+         color: white;
+         text-transform: uppercase;
+         }
+         .service p, .package p {
+         padding: 1.5rem;
+         margin: 0;
+         }
+         .contact {
+         background: #f0f4f8;
+         padding: 4rem 2rem;
+         }
+         .contact form {
+         max-width: 600px;
+         margin: 0 auto;
+         display: flex;
+         flex-direction: column;
+         gap: 1rem;
+         }
+         .contact input, .contact textarea {
+         width: 100%;
+         padding: 1rem;
+         border: 1px solid #ddd;
+         border-radius: 5px;
+         font-size: 1rem;
+         }
+         .contact button {
+         background: #1e3c72;
+         color: white;
+         padding: 1rem;
+         border: none;
+         border-radius: 5px;
+         font-size: 1rem;
+         cursor: pointer;
+         transition: background 0.3s ease;
+         }
+         .contact button:hover {
+         background: #005bb5;
+         }
+         footer {
+         background: #001f3f;
+         color: white;
+         padding: 2rem;
+         text-align: center;
+         }
+         footer p {
+         margin: 0;
+         }
+         /* Responsive Design */
+         @media (max-width: 768px) {
+         .services, .packages {
+         flex-direction: column;
+         align-items: center;
+         }
+         }
+         @media (max-width: 480px) {
+         nav a {
+         font-size: 0.8rem;
+         }
+         .hero h1 {
+         font-size: 2rem;
+         }
+         }
+
+         .hero-overlay {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 15px;
+  z-index: 10;
+  flex-wrap: nowrap; /* default is row */
+}
+
+.hero-overlay a {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  white-space: nowrap; /* keep text on one line */
+  transition: background-color 0.3s ease;
+}
+
+/* WhatsApp button specific color */
+.hero-overlay a.whatsapp {
+  background-color: rgba(37, 211, 102, 0.9);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .hero-overlay {
+    flex-direction: column;
+    bottom: 5%;
+    gap: 10px;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .hero-overlay a {
+    justify-content: center;
+    font-size: 0.9rem;
+    padding: 12px;
+    white-space: normal; /* allow wrap if needed */
+  }
+}
+
+      </style>
+   </head>
+   <body>
+      <header>
+         <div class="header-container">
+            <img class="logo" src="logo.webp" alt="iV MOVERS Logo" />
+            <div class="menu-icon" id="menuIcon">
+               <span></span>
+               <span></span>
+               <span></span>
+            </div>
+            <div class="title-section">
+               <h1>iV MOVERS</h1>
+               <p>FAST, RELIABLE, AND BUDGET-FRIENDLY MOVING SERVICES</p>
+            </div>
+         </div>
+         <!-- NAVIGATION -->
+         <ul class="nav-links" id="navLinks">
+            <li><a href="#budget-packages">Basic Package</a></li>
+            <li><a href="#premium-packages">Standard Package</a></li>
+            <li><a href="#all-in-one">Special Package</a></li>
+            <li><a href="#Pro-packages">Premium Package</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+         </ul>
+      </header>
+      <div class="hero" style="height: 68vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden;">
+         <!-- Slideshow Container -->
+         <div class="slideshow-container" style="width: 100%; height: 100%; position: absolute;">
+            <div class="slide" style="width: 100%; height: 100%; display: none;">
+               <img src="slide1.jpg" alt="Lorri Sewa in Malaysia" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div class="slide" style="width: 100%; height: 100%; display: none;">
+               <img src="slide2.jpg" alt="Moving Services in Malaysia" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div class="slide" style="width: 100%; height: 100%; display: none;">
+               <img src="slide3.jpg" alt="Packing Services in Malaysia" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+         </div>
+         <!-- Overlay Buttons -->
+         <div class="hero-overlay">
+  <a href="tel:+60122192103" >
+    <i class="fas fa-phone"></i> Call: 012 219 2103
+  </a>
+  <a href="https://wa.me/60122192103?text=Hello%20iV%20Movers%20,%20I%20am%20interested%20to%20know%20more%20details%20about%20the%20packages%20and%20prices." 
+     target="_blank" 
+     rel="noopener noreferrer" 
+     class="whatsapp">
+    <i class="fab fa-whatsapp"></i> WhatsApp Sekarang
+  </a>
+</div>
+
+      </div>
+      <section id="services">
+         <h2 style="font-weight: bolder; font-size: 2rem;">Our Moving Services | Perkhidmatan Pindah Kami</h2>
+         <p>Here at iV Movers, we provide professional house moving services in KL as well as prompt and experienced moving solutions for offices and businesses. Our team is committed towards providing timely and attentive moving house services.<br><br>Di iV Movers, kami menyediakan perkhidmatan pindah rumah profesional di KL serta solusi pindah pejabat dan perniagaan yang pantas dan berpengalaman. Pasukan kami komited untuk memberikan perkhidmatan pindah rumah yang tepat pada masa dan penuh perhatian dengan harga yang berpatutan.</p>
+         <div class="services">
+            <div class="service">
+               <h3>Office Moving</h3>
+               <p>Secure and efficient office relocation tailored to your business needs.</p>
+            </div>
+            <div class="service">
+               <h3>Residential Moving</h3>
+               <p>Professional moving solutions to make your home transition smooth.</p>
+            </div>
+            <div class="service">
+               <h3>Bulk Disposal</h3>
+               <p>Eco-friendly and hassle-free disposal of large items and waste.</p>
+            </div>
+         </div>
+      </section>
+      <section id="service-area" style="padding: 2rem; background: #f9f9f9;">
+         <h2 style="text-align: center; margin-bottom: 2rem;">Service Area <span style='font-size: 1.5rem;'>📍</span></h2>
+         <div style="display: flex; justify-content: space-between; gap: 20px;">
+            <div style="flex: 1; padding: 1rem;">
+               <h3>Lori Sewa Selangor:</h3>
+               <p>Ampang, Bandar Baru Bangi, Bandar Puncak Alam, Banting, Batang Kali, Batu Arang, Batu Caves, Beranang, Bestari Jaya, Bukit Rotan, Cheras, Cyberjaya, Dengkil, Hulu Langat, Jenjarom, Jeram, Kajang, Kapar, Kerling, Klang, KLIA, Kuala Kubu Baru, Kuala Selangor, Kuang, Pelabuhan Klang, Petaling Jaya, Puchong, Pulau Carey, Pulau Indah, Pulau Ketam, Rasa, Rawang, Sabak Bernam, Sekinchan, Semenyih, Sepang, Serdang, Serendah, Seri Kembangan, Shah Alam, Subang Jaya, Sungai Ayer Tawar, Sungai Besar, Sungai Buloh, Sungai Pelek, Tanjong Karang, Tanjong Sepat, Telok Panglima Garang</p>
+            </div>
+            <div style="width: 1px; background: black; height: auto;"></div>
+            <div style="flex: 1; padding: 1rem;">
+               <h3>Lori Sewa Kuala Lumpur:</h3>
+               <p>Ampang, Batu Caves, Cheras, Damansara, Gombak, Hulu Kelang, Kepong, Kuala Lumpur, Petaling, Petaling Jaya, Sentul, Setapak, Sungai Besi</p>
+            </div>
+         </div>
+      </section>
+      <section id="budget-packages" style="background: linear-gradient(135deg, #f5f5f5, #dcdcdc); padding: 2rem; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); margin-bottom: 2rem;">
+         <h2>Basic Packages</h2>
+         <p>1 Trip: Point A to point B with the distance up to 15km in Klang Valley</p>
+         <div class="packages">
+            <div class="package">
+               <h3>1 Ton Lorry (9 ft)</h3>
+               <p style="text-align: left;">
+                  ✔️ 1 Ton (9 ft) Lorry with 2 movers<br>
+                  ✔️ 1 Trip from point A to Point B-Moving Distance within 20Km around Klang Valley<br>
+                  ✔️ Not Applicable for moving heavy items like piano, safe box, restaurant chillers, motorcycles & machines<br>
+                  ✔️ Not include any additional services like wrapping, install or dismantle furniture & supply boxes<br>
+                  ✔️ Payment term: Cash /online instant transfer upon delivery<br>
+               </p>
+               <p style="text-align:center; margin-top: 0px; font-weight: bolder; font-size: 1.5rem">RM 250</p>
+               <!-- Centering the WhatsApp Button -->
+               <a href="https://wa.me/97477149227?text=Hello%20iV Movers%20,%20I%20am%20interested%20in%20RM%20250%20budget%20package."
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  style="background-color: #25D366; color: white; width: 50px; height: 50px; display: block; margin: 10px auto; border-radius: 50%; text-decoration: none; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); font-size: 1.5rem; text-align: center; line-height: 50px;">
+               <i class="fab fa-whatsapp"></i>
+               </a>
+            </div>
+            <div class="package">
+               <h3>3 Ton Lorry (14 ft)</h3>
+               <p style="text-align: left;">
+                  ✔️ 3 Ton (14 ft) Lorry with 3 movers<br>
+                  ✔️ 1 Trip from point A to Point B-Moving Distance within 15Km around Klang Valley<br>
+                  ✔️ Not Applicable for moving heavy items like piano, safe box, restaurant chillers, motorcycles & machines<br>
+                  ✔️ Not include any additional services like wrapping, install or dismantle furniture & supply boxes<br>
+                  ✔️ Payment term: Cash /online instant transfer upon delivery<br>
+               </p>
+               <p style="text-align:center; margin-top: -20px; font-weight: bolder; font-size: 1.5rem">RM 400</p>
+               <!-- Centering the WhatsApp Button -->
+               <a href="https://wa.me/97477149227?text=Hello%20iV%20Movers%20,%20I%20am%20interested%20in%20RM%20400%20budget%20package."
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  style="background-color: #25D366; color: white; width: 50px; height: 50px; display: block; margin: 10px auto; border-radius: 50%; text-decoration: none; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); font-size: 1.5rem; text-align: center; line-height: 50px;">
+               <i class="fab fa-whatsapp"></i>
+               </a>
+            </div>
+            <div class="package">
+               <h3>5 Ton Lorry (17 ft)</h3>
+               <p style="text-align: left;">
+                  ✔️ 5 Ton (17 ft) Lorry with 3 movers<br>
+                  ✔️ 1 Trip from point A to Point B-Moving Distance within 15Km around Klang Valley<br>
+                  ✔️ Not Applicable for moving heavy items like piano, safe box, restaurant chillers, motorcycles & machines<br>
+                  ✔️ Not include any additional services like wrapping, install or dismantle furniture & supply boxes<br>
+                  ✔️ Payment term: Cash /online instant transfer upon delivery<br>
+               </p>
+               <p style="text-align:center; margin-top: -20px; font-weight: bolder; font-size: 1.5rem">RM 500</p>
+               <a href="https://wa.me/97477149227?text=Hello%20iV%20Movers%20,%20I%20am%20interested%20in%20RM%20500%20budget%20package."
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  style="background-color: #25D366; color: white; width: 50px; height: 50px; display: block; margin: 10px auto; border-radius: 50%; text-decoration: none; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); font-size: 1.5rem; text-align: center; line-height: 50px;">
+               <i class="fab fa-whatsapp"></i>
+               </a>
+            </div>
+         </div>
+      </section>
+      <section id="premium-packages" style="background: linear-gradient(135deg, #f5f5f5, #dcdcdc); padding: 2rem; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); margin-bottom: 2rem;">
+         <h2>Standard Packages</h2>
+         <p>We have more than what you need for relocation, assemble, dissemble, shrink wrapping and more.</p>
+         <div class="packages">
+            <div class="package">
+               <h3>1 Ton Lorry (9 ft)</h3>
+               <p style="text-align: left;">
+                  ✔️ 1 Ton (9 ft) Lorry with 2 movers<br>
+                  ✔️ site visit<br>
+                  ✔️ Provide 5 boxes (Large Size) but self packing<br>
+                  ✔️ Packing Tape 1 pcs<br>
+                  ✔️ Includes dismantle re-fix for furniture<br>
+                  ✔️ Includes stretch film wrapping for furniture<br>
+                  ✔️ Includes bubble wrapping for fragile furniture<br>
+                  ✔️ Loading and unloading<br> 
+               </p>
+               <p style="text-align:center; margin-top: 0px; font-weight: bolder; font-size: 1.5rem">RM 400</p>
+               <!-- Centering the WhatsApp Button -->
+               <a href="https://wa.me/97477149227?text=Hello%20iV%20Movers%20,%20I%20am%20interested%20in%20RM%20400%20premium%20package."
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  style="background-color: #25D366; color: white; width: 50px; height: 50px; display: block; margin: 10px auto; border-radius: 50%; text-decoration: none; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); font-size: 1.5rem; text-align: center; line-height: 50px;">
+               <i class="fab fa-whatsapp"></i>
+               </a>
+            </div>
+            <div class="package">
+               <h3>3 Ton Lorry (14 ft)</h3>
+               <p style="text-align: left;">
+                  ✔️ 3 Ton (14 ft) Lorry with 3 movers<br>
+                  ✔️ site visit<br>
+                  ✔️ Provide 15 boxes (Large Size) but self packing<br>
+                  ✔️ Packing Tape 1 pcs<br>
+                  ✔️ Includes dismantle re-fix for furniture<br>
+                  ✔️ Includes stretch film wrapping for furniture<br>
+                  ✔️ Includes bubble wrapping for fragile furniture<br>
+                  ✔️ Loading and unloading<br> 
+               </p>
+               <p style="text-align:center; margin-top: -20px; font-weight: bolder; font-size: 1.5rem">RM 800</p>
+               <!-- Centering the WhatsApp Button -->
+               <a href="https://wa.me/97477149227?text=Hello%20iV%20Movers%20,%20I%20am%20interested%20in%20RM%20800%20premium%20package."
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  style="background-color: #25D366; color: white; width: 50px; height: 50px; display: block; margin: 10px auto; border-radius: 50%; text-decoration: none; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); font-size: 1.5rem; text-align: center; line-height: 50px;">
+               <i class="fab fa-whatsapp"></i>
+               </a>
+            </div>
+            <div class="package">
+               <h3>5 Ton Lorry (17 ft)</h3>
+               <p style="text-align: left;">
+                  ✔️ 5 Ton (17 ft) Lorry with 3 movers<br>
+                  ✔️ site visit<br>
+                  ✔️ Provide 20 boxes (Large Size) but self packing<br>
+                  ✔️ Packing Tape 2 pcs<br>
+                  ✔️ Includes dismantle re-fix for furniture<br>
+                  ✔️ Includes stretch film wrapping for furniture<br>
+                  ✔️ Includes bubble wrapping for fragile furniture<br>
+                  ✔️ Loading and unloading<br> 
+               </p>
+               <p style="text-align:center; margin-top: -20px; font-weight: bolder; font-size: 1.5rem">RM 1000</p>
+               <!-- Centering the WhatsApp Button -->
+               <a href="https://wa.me/97477149227?text=Hello%20iV%20Movers%20,%20I%20am%20interested%20in%20RM%201000%20premium%20package."
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  style="background-color: #25D366; color: white; width: 50px; height: 50px; display: block; margin: 10px auto; border-radius: 50%; text-decoration: none; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); font-size: 1.5rem; text-align: center; line-height: 50px;">
+               <i class="fab fa-whatsapp"></i>
+               </a>
+            </div>
+         </div>
+      </section>
+      <section id="all-in-one" style="background: linear-gradient(135deg, #f5f5f5, #dcdcdc); padding: 2rem; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); margin-bottom: 2rem;">
+         <h2>Special Packages</h2>
+         <p>All the services included to keep your mind free. Below is all the services included in our package for a best price.</p>
+         <div class="packages">
+            <div class="package">
+               <h3>1 Ton Lorry (9 ft)</h3>
+               <p style="text-align: left;">
+                  ✔️ 1 Ton (9 ft) Lorry with 2 movers<br>
+                  ✔️ site visit<br>
+                  ✔️ Includes Packing Service Boxes (Large Size)<br>
+                  ✔️ Packing 5 boxes (documents, dresses, accessories free)<br>
+                  ✔️ Packing 5 boxes fragile items with bubble and shrink wrap<br>
+                  ✔️ Includes dismantle re-fix for furniture<br>
+                  ✔️ Includes stretch film wrapping for furniture<br>
+                  ✔️ Includes bubble wrapping for fragile furniture<br>
+                  ✔️ Loading and unloading<br> 
+               </p>
+               <p style="text-align:center; margin-top: 0px; font-weight: bolder; font-size: 1.5rem">RM 800</p>
+               <!-- Centering the WhatsApp Button -->
+               <a href="https://wa.me/97477149227?text=Hello%20iV%20Movers%20,%20I%20am%20interested%20in%20RM%20700%20All%20In%20One%20Service%20package."
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  style="background-color: #25D366; color: white; width: 50px; height: 50px; display: block; margin: 10px auto; border-radius: 50%; text-decoration: none; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); font-size: 1.5rem; text-align: center; line-height: 50px;">
+               <i class="fab fa-whatsapp"></i>
+               </a>
+            </div>
+            <div class="package">
+               <h3>3 Ton Lorry (14 ft)</h3>
+               <p style="text-align: left;">
+                  ✔️ 3 Ton (14 ft) Lorry with 3 movers<br>
+                  ✔️ site visit<br>
+                  ✔️ Includes Packing Service Boxes (Large Size)<br>
+                  ✔️ Packing 10 boxes (documents, dresses, accessories free)<br>
+                  ✔️ Packing 5 boxes fragile items with bubble and shrink wrap<br>
+                  ✔️ Includes dismantle re-fix for furniture<br>
+                  ✔️ Includes stretch film wrapping for furniture<br>
+                  ✔️ Includes bubble wrapping for fragile furniture<br>
+                  ✔️ Loading and unloading<br> 
+               </p>
+               <p style="text-align:center; margin-top: -20px; font-weight: bolder; font-size: 1.5rem">RM 1400</p>
+               <!-- Centering the WhatsApp Button -->
+               <a href="https://wa.me/97477149227?text=Hello%20iV%20Movers%20,%20I%20am%20interested%20in%20RM%201300%20All%20In%20One%20Service%20package."
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  style="background-color: #25D366; color: white; width: 50px; height: 50px; display: block; margin: 10px auto; border-radius: 50%; text-decoration: none; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); font-size: 1.5rem; text-align: center; line-height: 50px;">
+               <i class="fab fa-whatsapp"></i>
+               </a>
+            </div>
+            <div class="package">
+               <h3>5 Ton Lorry (17 ft)</h3>
+               <p style="text-align: left;">
+                  ✔️ 5 Ton (17 ft) Lorry with 3 movers<br>
+                  ✔️ site visit<br>
+                  ✔️ Includes Packing Service Boxes (Large Size)<br>
+                  ✔️ Packing 15 boxes (documents, dresses, accessories free)<br>
+                  ✔️ Packing 5 boxes fragile items with bubble and shrink wrap<br>
+                  ✔️ Includes dismantle re-fix for furniture<br>
+                  ✔️ Includes stretch film wrapping for furniture<br>
+                  ✔️ Includes bubble wrapping for fragile furniture<br>
+                  ✔️ Loading and unloading<br> 
+               </p>
+               <p style="text-align:center; margin-top: -20px; font-weight: bolder; font-size: 1.5rem">RM 1600</p>
+               <!-- Centering the WhatsApp Button -->
+               <a href="https://wa.me/97477149227?text=Hello%20iV%20Movers%20,%20I%20am%20interested%20in%20RM%201500%20All%20In%20One%20Service%20package."
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  style="background-color: #25D366; color: white; width: 50px; height: 50px; display: block; margin: 10px auto; border-radius: 50%; text-decoration: none; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); font-size: 1.5rem; text-align: center; line-height: 50px;">
+               <i class="fab fa-whatsapp"></i>
+               </a>
+            </div>
+         </div>
+      </section>
+      <section id="Pro-packages" style="background: linear-gradient(135deg, #f5f5f5, #dcdcdc); padding: 2rem; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); margin-bottom: 2rem;">
+         <h2>Premium Packages</h2>
+         <p>All the services included to keep your mind free. Below is all the services included in our package for a best price.</p>
+         <div class="packages">
+            <div class="package">
+               <h3>1 Ton Lorry (9 ft)</h3>
+               <p style="text-align: left;">
+                  ✔️ 1 Ton (9 ft) Lorry with 2 movers<br>
+                  ✔️ site visit<br>
+                  ✔️ Includes Packing Service Boxes (Large Size)<br>
+                  ✔️ Packing 5 boxes (documents, dresses, accessories free)<br>
+                  ✔️ Packing 5 boxes fragile items with bubble and shrink wrap<br>
+                  ✔️ Includes dismantle re-fix for furniture<br>
+                  ✔️ Includes stretch film wrapping for furniture<br>
+                  ✔️ Includes bubble wrapping for fragile furniture<br>
+                  ✔️ Unwrapping and arranging furniture 
+                  ✔️ Loading and unloading<br> 
+               </p>
+               <p style="text-align:center; margin-top: 0px; font-weight: bolder; font-size: 1.5rem">RM 950</p>
+               <!-- Centering the WhatsApp Button -->
+               <a href="https://wa.me/97477149227?text=Hello%20iV%20Movers%20,%20I%20am%20interested%20in%20RM%20950%20All%20In%20One%20Service%20package."
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  style="background-color: #25D366; color: white; width: 50px; height: 50px; display: block; margin: 10px auto; border-radius: 50%; text-decoration: none; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); font-size: 1.5rem; text-align: center; line-height: 50px;">
+               <i class="fab fa-whatsapp"></i>
+               </a>
+            </div>
+            <div class="package">
+               <h3>3 Ton Lorry (14 ft)</h3>
+               <p style="text-align: left;">
+                  ✔️ 3 Ton (14 ft) Lorry with 3 movers<br>
+                  ✔️ site visit<br>
+                  ✔️ Includes Packing Service Boxes (Large Size)<br>
+                  ✔️ Packing 10 boxes (documents, dresses, accessories free)<br>
+                  ✔️ Packing 5 boxes fragile items with bubble and shrink wrap<br>
+                  ✔️ Includes dismantle re-fix for furniture<br>
+                  ✔️ Includes stretch film wrapping for furniture<br>
+                  ✔️ Includes bubble wrapping for fragile furniture<br>
+                  ✔️ Unwrapping and arranging furniture 
+                  ✔️ Loading and unloading<br> 
+               </p>
+               <p style="text-align:center; margin-top: -20px; font-weight: bolder; font-size: 1.5rem">RM 1600</p>
+               <!-- Centering the WhatsApp Button -->
+               <a href="https://wa.me/97477149227?text=Hello%20iV%20Movers%20,%20I%20am%20interested%20in%20RM%201600%20All%20In%20One%20Service%20package."
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  style="background-color: #25D366; color: white; width: 50px; height: 50px; display: block; margin: 10px auto; border-radius: 50%; text-decoration: none; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); font-size: 1.5rem; text-align: center; line-height: 50px;">
+               <i class="fab fa-whatsapp"></i>
+               </a>
+            </div>
+            <div class="package">
+               <h3>5 Ton Lorry (17 ft)</h3>
+               <p style="text-align: left;">
+                  ✔️ 5 Ton (17 ft) Lorry with 3 movers<br>
+                  ✔️ site visit<br>
+                  ✔️ Includes Packing Service Boxes (Large Size)<br>
+                  ✔️ Packing 15 boxes (documents, dresses, accessories free)<br>
+                  ✔️ Packing 5 boxes fragile items with bubble and shrink wrap<br>
+                  ✔️ Includes dismantle re-fix for furniture<br>
+                  ✔️ Includes stretch film wrapping for furniture<br>
+                  ✔️ Includes bubble wrapping for fragile furniture<br>
+                  ✔️ Unwrapping and arranging furniture
+                  ✔️ Loading and unloading<br> 
+               </p>
+               <p style="text-align:center; margin-top: -20px; font-weight: bolder; font-size: 1.5rem">RM 1800</p>
+               <!-- Centering the WhatsApp Button -->
+               <a href="https://wa.me/97477149227?text=Hello%20iV%20Movers%20,%20I%20am%20interested%20in%20RM%201800%20All%20In%20One%20Service%20package."
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  style="background-color: #25D366; color: white; width: 50px; height: 50px; display: block; margin: 10px auto; border-radius: 50%; text-decoration: none; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); font-size: 1.5rem; text-align: center; line-height: 50px;">
+               <i class="fab fa-whatsapp"></i>
+               </a>
+            </div>
+         </div>
+      </section>
+      <section id="why-choose-us" style="display: flex; align-items: center; justify-content: space-between; padding: 4rem 2rem; gap: 2rem;">
+         <div style="flex: 1;">
+            <h2>Why Choose iV Movers</h2>
+            <p>There are several reasons for choosing iV Movers over other companies when it comes to house or office relocation. We are experienced movers that have been working in the niche for over a decade. Our company approaches each customer individually, providing the best service and work according to your unique needs.</p>
+            <h3>Contact Information</h3>
+            <p style="margin-bottom: 0.5rem;">📞 Phone: +6012-219 2103</p>
+            <p>✉️ Email: <a href="mailto:ivmovers.com@gmail.com">ivmovers.com@gmail.com</a></p>
+         </div>
+         <div style="flex: 1;">
+            <img src="whymrlori.jpg" alt="affordable lorry sewa and moving services in KL Malaysia" style="max-width: 100%; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
+         </div>
+      </section>
+      <section id="contact" class="contact" style="background: linear-gradient(135deg, #1e3c72, #3b5998); padding: 2rem 2rem; color: white;">
+         <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2.5rem;">Contact Us</h2>
+         <p style="text-align: center; margin-bottom: 2rem; font-size: 1.2rem;">Feel free to call us anytime to inquire about prices, services, and locations or send us an email using the form below.</p>
+         <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem;">
+            <button style="background: white; color: #004080; padding: 1rem 2rem; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer; transition: background 0.3s ease;">
+            📞 Call Us
+            </button>
+            <a href="https://wa.me/60122192103?text=Hello%20iV%20Movers%20,%20I%20am%20interested%20to%20know%20more%20details%20about%20the%20packages%20and%20prices." 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               style="background-color: rgba(37, 211, 102, 0.9); color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none; font-size: 1rem; display: flex; align-items: center; gap: 5px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
+            <i class="fab fa-whatsapp"></i> WhatsApp Sekarang
+            </a>
+         </div>
+         <form style="max-width: 800px; margin: 0 auto; background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); color: #333;" autocomplete="off" action="/submit-form" method="POST">
+            <input type="hidden" name="csrf_token" value="{{csrf_token}}">
+            <!-- Updated Grid Gap for Horizontal Spacing -->
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-bottom: 20px;">
+               <div>
+                  <label for="name" style="display: block; font-size: 1rem; margin-bottom: 5px;">Name</label>
+                  <input type="text" id="name" name="name" placeholder="Your Name" required minlength="3" maxlength="50" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem;">
+               </div>
+               <div>
+                  <label for="email" style="display: block; font-size: 1rem; margin-bottom: 5px;">Email</label>
+                  <input type="email" id="email" name="email" placeholder="Your Email" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem;">
+               </div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-bottom: 20px;">
+               <div>
+                  <label for="pickup" style="display: block; font-size: 1rem; margin-bottom: 5px;">Pick Up Location</label>
+                  <input type="text" id="pickup" name="pickup" placeholder="Pick Up Location" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem;">
+               </div>
+               <div>
+                  <label for="dropoff" style="display: block; font-size: 1rem; margin-bottom: 5px;">Drop Off Location</label>
+                  <input type="text" id="dropoff" name="dropoff" placeholder="Drop Off Location" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem;">
+               </div>
+            </div>
+            <div style="margin-bottom: 20px;">
+               <label for="message" style="display: block; font-size: 1rem; margin-bottom: 5px;">Message</label>
+               <textarea id="message" name="message" placeholder="Your Message" rows="5" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem;"></textarea>
+            </div>
+            <button type="submit" style="background: linear-gradient(135deg, #f093fb, #f5576c); color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer; transition: background 0.3s ease;">
+            Submit Message
+            </button>
+         </form>
+      </section>
+      <footer style="background: linear-gradient(135deg, #2c3e50, #35424a); color: white; padding: 0rem 1rem; text-align: center;">
+         <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+            <div>
+               <p style="margin-top: 0.5rem; margin-bottom: 0.2rem; font-size: 0.8rem">&copy; 2025 iV Movers. All Rights Reserved. Your Trusted Partner in Moving</p>
+            </div>
+         </div>
+      </footer>
+      </div>
+      </div>
+      <!-- WhatsApp Floating Button -->
+      <a href="https://wa.me/97477149227?text=Hello%20iV%20Movers%20,%20I%20am%20interested%20to%20know%20more%20details%20about%20the%20packages%20and%20prices" 
+         target="_blank" 
+         style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; background-color: #25D366; color: white; padding: 15px; border-radius: 50%; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); text-align: center;">
+      <i class="fab fa-whatsapp" style="font-size: 24px;"></i>
+      </a>
+      <!-- Floating Scroll to Top Button -->
+      <button id="scrollToTop" 
+         style="position: fixed; 
+         bottom: 80px; 
+         right: 20px; 
+         z-index: 1000; 
+         background-color: #333; 
+         color: white; 
+         border: none; 
+         width: 50px; /* Set equal width and height */
+         height: 50px; /* Set equal width and height */
+         border-radius: 50%; /* Make it a perfect circle */
+         cursor: pointer; 
+         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
+         display: none; 
+         font-size: 20px; /* Ensure font size fits within the button */
+         text-align: center; 
+         line-height: 50px; /* Align icon vertically */
+         ">
+      <i class="fas fa-arrow-up" style="font-size: 20px;"></i>
+      </button>
+      <!-- Include the External JavaScript File -->
+      <script src="scroll.js"></script>
+      <script src="toggleMenu.js"></script>
+      <script src="sec.js"></script>
+      <script src="slide.js" defer></script>   
+   </body>
+</html>
